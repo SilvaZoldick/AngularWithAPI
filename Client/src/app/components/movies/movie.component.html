@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+      <form class="form" [formGroup]="movieForm" (submit)="OnSaveMovie()">
+        <div class="form-group">
+          <label for="movieTitle">Movie Title</label>
+          <input type="text"
+                id="movieTitle"
+                name="movieTitle"
+                placeholder="Type the movie title"
+                class="form-control"
+                formControlName="title"
+                [value]="movieForm.title" />
+        </div>
+        <div class="form-group">
+          <label for="movieGender">Movie Gender</label>
+          <input type="text"
+                id="movieGender"
+                name="movieGender"
+                placeholder="Type the movie gender"
+                class="form-control"
+                formControlName="gender"
+                [value]="movieForm.gender" />
+        </div>
+        <div class="form-group">
+          <label for="movieDuration">Movie Duration</label>
+          <input type="text"
+                id="movieDuration"
+                name="movieDuration"
+                placeholder="Type the movie duration"
+                class="form-control"
+                formControlName="duration"
+                [value]="movieForm.duration" />
+        </div>
+        <div>
+          <ng-container *ngIf="pageName=='Create' else DetailsPage">
+            <div class="form-group mt-2">
+              <button type="submit" class="btn btn-success">Create</button>
+              <button (click)="OnCancel()" class="btn btn-danger">Cancel</button>
+            </div>
+          </ng-container>
+          <ng-template #DetailsPage>
+            <ng-container *ngIf="pageName=='Details' else EditPage">
+              <div class="form-group mt-2">
+                <button (click)="OnEditMovie()" class="btn btn-info">Editar</button>
+              </div>
+            </ng-container>
+          </ng-template>
+          <ng-template #EditPage>
+            <div class="form-group mt-2">
+              <button type="submit" class="btn btn-success">Save</button>
+              <button (click)="OnCancel()" class="btn btn-danger">Cancel</button>
+            </div>
+          </ng-template>
+        </div>
+      </form>
+    </div>
+  </div>

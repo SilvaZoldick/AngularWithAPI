@@ -1,0 +1,38 @@
+<div class="container p-1">
+  <div class="border border-light rounded pt-2">
+    <button type="button" class="btn btn-sm btn-secondary" (click)="openDialog(null)">New Movie</button>
+  </div>
+  <hr/>
+  <table mat-table [dataSource]="movieList" class="mat-elevation-z8" *ngIf="movieList.length > 0 else noMovies">
+    <ng-container matColumnDef="title"> class="thead-light">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let movie">{{ movie.title }}</td>
+    </ng-container>
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>Gender</th>
+      <td mat-cell *matCellDef="let movie">{{ movie.gender }}</td>
+    </ng-container>
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef>Duration</th>
+      <td mat-cell *matCellDef="let movie">{{ movie.duration }}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let movie">
+        <button mat-icon-button (click)="openDialog(movie)" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="OnDeleteMovie(movie.id)" color="primary">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <ng-template #noMovies>
+    <div class="ff-inter no-movies">
+      <p>No movies registered</p>
+    </div>
+  </ng-template>
+</div>
