@@ -1,0 +1,21 @@
+<h1 *ngIf="!isChange" mat-dialog-title>Create Product</h1>
+<h1 *ngIf="isChange" mat-dialog-title>Update Product</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label for="movieTitle">Movie Title</mat-label>
+      <input matInput [(ngModel)]="data.title"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Movie Gend</mat-label>
+    <input matInput type="number" [(ngModel)]="data.gender"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Movie Duration</mat-label>
+    <input matInput type="number" [(ngModel)]="data.duration"/>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button *ngIf="!isChange" mat-raised-button (click)="onCreate()" color="primary" [mat-dialog-close]="data" cdkFocusInitial>Create</button>
+    <button *ngIf="isChange" mat-raised-button (click)="onSave()" color="primary" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+  <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+</div>
